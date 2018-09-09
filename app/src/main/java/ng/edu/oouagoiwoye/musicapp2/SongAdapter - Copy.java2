@@ -1,0 +1,90 @@
+package ng.edu.oouagoiwoye.musicapp2;
+
+import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+
+import java.util.ArrayList;
+
+public final class SongAdapter extends ArrayAdapter<Song> implements
+        View.OnClickListener {
+    private ArrayList<Song> dataSet;
+    Context mContext;
+
+    // View lookup cache
+    private static class ViewHolder {
+        TextView txtName;
+        TextView txtType;
+        TextView txtVersion;
+        ImageView info;
+    }
+
+
+    public SongAdapter(Activity context, ArrayList<Song> songs)
+    {
+
+        super(context, 0, songs);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+        int position=(Integer) v.getTag();
+        Object object= getItem(position);
+        Song dataModel=(Song)object;
+
+        switch (v.getId())
+        {
+          /*  case R.id.list_item:
+                Toast.makeText(mContext,dataModel.getTitle(),Toast.LENGTH_SHORT).show();
+                //Snackbar.make(v, "Release date " +dataModel.getTitle(), Snackbar.LENGTH_LONG)                        .setAction("No action", null).show();
+                break;*/
+
+            case R.id.artist:
+                Toast.makeText(mContext,"tobi is my name",Toast.LENGTH_SHORT).show();
+                //Snackbar.make(v, "Release date " +dataModel.getArtist(), Snackbar.LENGTH_LONG)                        .setAction("No action", null).show();
+                break;
+        }
+    }
+
+    private int lastPosition = -1;
+
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
+        Song song = getItem(position);
+        if (convertView == null) {
+
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
+        }
+
+        TextView artist = (TextView) convertView.findViewById(R.id.artist);
+
+
+        TextView duration = (TextView) convertView.findViewById(R.id.duration);
+        TextView title = (TextView) convertView.findViewById(R.id.title);
+
+        // Populate the data into the template view using the data object
+
+        convertView.setOnClickListener(this);
+
+        artist.setText(song.getArtist());
+        artist.setTag(position);
+        duration.setText(song.getDuration());
+        title.setText(song.getTitle());
+        //convertView.setTag(position);
+        //title.setTypeface(bold);
+        //title.setTextSize(16);
+
+        return convertView;
+    }
+}
