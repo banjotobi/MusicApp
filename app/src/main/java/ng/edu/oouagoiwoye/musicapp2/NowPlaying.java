@@ -29,7 +29,7 @@ public class NowPlaying extends AppCompatActivity {
         duration = getIntent().getStringExtra("duration");
         artist = getIntent().getStringExtra("artist");
         sTitle = findViewById(R.id.title);
-        sTitle.setText("Now Playing "+title) ;
+        sTitle.setText(title) ;
         setTitle(title);
 
         sDuration = findViewById(R.id.duration);
@@ -38,8 +38,6 @@ public class NowPlaying extends AppCompatActivity {
         sArtist.setText(artist);
         sAlbumArt = (ImageView) findViewById(R.id.albumart);
         sAlbumArt.setImageResource(albumArt);
-
-
 
 
     }

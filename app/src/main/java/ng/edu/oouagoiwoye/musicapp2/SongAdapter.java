@@ -42,14 +42,14 @@ public final class SongAdapter extends ArrayAdapter<Song>  {
         ImageView art = (ImageView) convertView.findViewById(R.id.art);
 
 
-        //TextView duration = (TextView) convertView.findViewById(R.id.duration);
+
         TextView title = (TextView) convertView.findViewById(R.id.title);
 
 
         // Populate the data into the template view using the data object
 
         artist.setText(song.getArtist());
-       // duration.setText(song.getDuration());
+
         title.setText(song.getTitle());
         art.setImageResource(song.getAlbumArt());
 
@@ -75,15 +75,13 @@ public final class SongAdapter extends ArrayAdapter<Song>  {
                 }
 
                 mPlayer    = MediaPlayer.create(getContext(), song.getMFile());
-                //mPlayer.pause();
+
                 mPlayer.start();
 
                 Intent intent = new Intent(getContext(), NowPlaying.class);
-                //Bitmap _bitmap;
-                //EditText editText = (EditText) findViewById(R.id.editText);
-                //String message = editText.getText().toString();
+
                 intent.putExtra("artist", song.getArtist());
-               // intent.putExtra("art",song.getAlbumArt());
+
                 int art = song.getAlbumArt();
                 intent.putExtra("albumArt", song.getAlbumArt());
                 intent.putExtra("duration", song.getDuration());
@@ -91,10 +89,10 @@ public final class SongAdapter extends ArrayAdapter<Song>  {
 
                getContext().startActivity(intent);
 
+
             }
         });
-        //title.setTypeface(bold);
-        //title.setTextSize(16);
+
 
 
 
